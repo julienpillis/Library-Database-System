@@ -43,8 +43,13 @@ Pour pouvoir emprunter un document, un adhérent à besoin de s'authentifier. Ch
 	
 ##### CONTRIBUTEUR 
 - nom, prénom, date de naissance, nationalité
+- un contributeur peut composer 1 ou plusieurs musiques (compositeur) (association avec MUSIQUE  * -- 1..n)
+- un contributeur peut interpréter 1 ou plusieurs musiques (interprète) (association avec MUSIQUE  * -- 1..n)
+- un contributeur peut réaliser 1 ou plusieurs films (réalisateur) (association avec FILM  * -- 1..n)
+- un contributeur peut jouer dans 1 ou plusieurs films (acteur) (association avec FILM  * -- 1..n)
+- un contributeur peut écrire 1 ou plusieurs livres (auteur) (association avec LIVRE  * -- 1..n)
 - clé artificielle à envisager pour éviter les homonymes 
-
+- <i>NB: Nous pourrons aussi envisager un héritage avec la classe mère CONTRIBUTEUR et des classes filles ACTEUR, COMPOSITEUR, REALISATEUR, INTERPRETE, AUTEUR à voir...</i>
 
 ##### LIVRE (classe fille de RESSOURCE)
 > \+ attributs de la classe mère RESSOURCE
@@ -92,7 +97,7 @@ Pour pouvoir emprunter un document, un adhérent à besoin de s'authentifier. Ch
 
     > "*En cas de perte ou détérioration grave d’un document, la suspension du droit de prêt est maintenue jusqu’à ce que l’adhérent rembourse le document*"
 
-- est liée à un adhérent (association avec ADHERENT : 1 -- *)
+- est liée à un adhérent (association avec ADHERENT : "*" -- "1")
 - date de début <= date de fin
 
     
@@ -186,7 +191,7 @@ Utilisateur <|-left personnel
 Utilisateur *-- "1" Compte
 Utilisateur <|- Adherent
 
-Sanction "1" -- "*" Adherent : est_sanctionne
+Sanction "*" -- "1" Adherent : est_sanctionne
 class Compte {
     login : string
     password : string
