@@ -2,7 +2,12 @@
 ## Système de gestion d'une bibliothèque
 ![example workflow](https://img.shields.io/badge/build-in%20progress-blue)
 ---
-
+**Etudiants :** 
+ - Pillis Julien
+ - Galleze Rayane
+ - Labouré Alexandre
+ - Vivat Benjamin
+    
 ### Enoncé
 Vous êtes chargés de concevoir un système de gestion pour une bibliothèque municipale qui souhaite informatiser ses activités : catalogage, consultations, gestion des utilisateurs, prêts, etc.
 
@@ -110,7 +115,9 @@ Pour pouvoir emprunter un document, un adhérent à besoin de s'authentifier. Ch
 - clé artificielle à envisager
 
 
-### PlantUML
+---
+
+## MCD : Diagramme UML / PlantUML
 ```plantuml
 
 
@@ -231,3 +238,4 @@ enum type_etat <<enum>> {
 }
 ```
 
+---
