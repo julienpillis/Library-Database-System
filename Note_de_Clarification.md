@@ -40,14 +40,15 @@ Pour pouvoir emprunter un document, un adhérent à besoin de s'authentifier. Ch
 ##### RESSOURCE 
     
 - code (clé), titre, date d’apparition, code de classification, éditeur, un genre
+- a un type (RESSOURCE est une classe mère (abstraite), héritage exclusif non complet, avec LIVRE, FILM, MUSIQUE par référence avec contrainte de projection et intersection des classes filles nulle?) 
 	
 ##### CONTRIBUTEUR 
 - nom, prénom, date de naissance, nationalité
-- un contributeur peut composer 1 ou plusieurs musiques (compositeur) (association avec MUSIQUE  * -- 1..n)
-- un contributeur peut interpréter 1 ou plusieurs musiques (interprète) (association avec MUSIQUE  * -- 1..n)
-- un contributeur peut réaliser 1 ou plusieurs films (réalisateur) (association avec FILM  * -- 1..n)
-- un contributeur peut jouer dans 1 ou plusieurs films (acteur) (association avec FILM  * -- 1..n)
-- un contributeur peut écrire 1 ou plusieurs livres (auteur) (association avec LIVRE  * -- 1..n)
+- un contributeur peut composer 1 ou plusieurs musiques (compositeur) (association avec MUSIQUE  "1..n" -- "*")
+- un contributeur peut interpréter 1 ou plusieurs musiques (interprète) (association avec MUSIQUE  "1..n" -- "*")
+- un contributeur peut réaliser 1 ou plusieurs films (réalisateur) (association avec FILM  "1..n" -- "*")
+- un contributeur peut jouer dans 1 ou plusieurs films (acteur) (association avec FILM  "1..n" -- "*")
+- un contributeur peut écrire 1 ou plusieurs livres (auteur) (association avec LIVRE  "1..n" -- "*")
 - clé artificielle à envisager pour éviter les homonymes 
 - <i>NB: Nous pourrons aussi envisager un héritage avec la classe mère CONTRIBUTEUR et des classes filles ACTEUR, COMPOSITEUR, REALISATEUR, INTERPRETE, AUTEUR à voir...</i>
 
@@ -115,7 +116,7 @@ Pour pouvoir emprunter un document, un adhérent à besoin de s'authentifier. Ch
 
 ##### EXEMPLAIRE 
 - état ENUM(Neuf, Bon, Abimé, Perdu)) 
-- codeRessource (composition avec Ressource 1..*, un exemplaire ne peut pas exister dans ressource), 
+- codeRessource (composition avec Ressource 1..*, un exemplaire ne peut pas exister sans ressource), 
 - disponible (Booléen)
 - clé artificielle à envisager
 
