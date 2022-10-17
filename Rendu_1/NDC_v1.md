@@ -77,6 +77,10 @@ Pour pouvoir emprunter un document, un adhérent à besoin de s'authentifier. Ch
     > Pour des raisons de sécurité, il serait préférable d'avoir une table Compte à part avec le login et mot de passe.
 
 - clé artificelle à envisager pour éviter les homonymes
+- chaque utilisateur dispose de droits spécifiques sur la BDD en fonction de leur rôle (exemples ci-dessous):
+    - L'admin a le rôle de superuser (dispose de tout les droits) *grant all privileges*
+    - Une bibliothécaire peut modifier le statut des adhérents, ajouter des sanctions, ajouter des ressources ect...
+    - Un adhérent peut consulter les ressources disponibles et gérer ses emprunts ect...
 
 ##### PERSONNEL (classe fille d'UTILISATEUR)
 > \+ attributs de la classe mère UTILISATEUR
@@ -120,6 +124,12 @@ Pour pouvoir emprunter un document, un adhérent à besoin de s'authentifier. Ch
 - disponible (Booléen)
 - clé artificielle à envisager
 
+##### REQUÊTES TYPES
+- Établir une liste des documents classés par popularité 
+- Suggérer une liste de recommandations à un adhérent en fonction de ses précédents prêts
+- Classer les ressources par contributeur, genre, date...
+- Déterminer le nombre de sanction d'un adhérent 
+- Calculer le nombre d'adhésions sur une période donnée (faire une moyenne de variation par année, par exemple en 2022 on a 30% d'adhésions en plus par rapport à 2021)
 
 ---
 
