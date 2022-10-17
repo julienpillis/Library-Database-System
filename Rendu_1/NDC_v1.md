@@ -144,6 +144,7 @@ abstract class Ressource {
     date_apparition : Date
     code_classification :int
     editeur: string
+    genre: string
 }
 
 class Livre {
