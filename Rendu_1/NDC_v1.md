@@ -72,7 +72,7 @@ Pour pouvoir emprunter un document, un adhérent à besoin de s'authentifier. Ch
 
 	
 #### UTILISATEUR
-- nom, prénom, adresse e-mail, adresse
+- nom, prénom, adresse e-mail, adresse (composée du numéro, de la rue, du code postal et de la ville)
 - a un compte utilisateur (Composition 1 -- 1 avec COMPTE)
     > Pour des raisons de sécurité, il serait préférable d'avoir une table Compte à part avec le login et mot de passe.
 
