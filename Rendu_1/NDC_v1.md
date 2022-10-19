@@ -1,6 +1,6 @@
 # Note de Clarification
 ## Système de gestion d'une bibliothèque
-![example workflow](https://img.shields.io/badge/build-in%20progress-blue)
+![example workflow](https://img.shields.io/badge/Rendu%201-done-brightgreen)
 ---
 **Etudiants :** 
  - Pillis Julien
