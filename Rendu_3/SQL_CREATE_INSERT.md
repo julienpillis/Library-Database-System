@@ -1,6 +1,6 @@
 # SQL Partie 1 : Création & insertion
 
-
+Pour l'utilisation de clé artificielle, nous utiliserons le type SERIAL, qui, en POSTGRESQL, est un entier auto-incrémenté lors de l'insertion d'une donnée dans la table.
 
 ### CREATION 
 ~~~sql
