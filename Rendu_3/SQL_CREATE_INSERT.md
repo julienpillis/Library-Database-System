@@ -192,13 +192,14 @@ INSERT INTO EXEMPLAIRE(code_ressource,etat) VALUES (3,'abîmé');
 INSERT INTO EXEMPLAIRE(code_ressource,etat) VALUES (3,'abîmé');
 INSERT INTO EXEMPLAIRE(code_ressource,etat) VALUES (2,'neuf');
 
-INSERT INTO PRET(adherent,exemplaire,code_ressource,date_debut,date_fin,rendu) VALUES (3,10,1,DATE('2022-09-10'),DATE('2022-09-10'),true);
-INSERT INTO PRET(adherent,exemplaire,code_ressource,date_debut,date_fin,rendu) VALUES (4,10,1,DATE('2022-09-12'),DATE('2022-09-13'),true);
+INSERT INTO PRET(adherent,exemplaire,code_ressource,date_debut,date_fin,rendu) VALUES (3,1,1,DATE('2022-09-10'),DATE('2022-09-10'),true);
+INSERT INTO PRET(adherent,exemplaire,code_ressource,date_debut,date_fin,rendu) VALUES (4,1,1,DATE('2022-09-12'),DATE('2022-09-13'),true);
 INSERT INTO PRET(adherent,exemplaire,code_ressource,date_debut,date_fin,rendu) VALUES (4,5,1,DATE('2022-09-11'),DATE('2022-09-15'),true);
-INSERT INTO PRET(adherent,exemplaire,code_ressource,date_debut,date_fin,rendu) VALUES (3,6,2,DATE('2022-10-24'),DATE('2022-11-19'),false);
-INSERT INTO PRET(adherent,exemplaire,code_ressource,date_debut,date_fin,rendu) VALUES (3,12,3,DATE('2022-09-8'),DATE('2022-11-02'),false);
-INSERT INTO PRET(adherent,exemplaire,code_ressource,date_debut,date_fin,rendu) VALUES (4,6,2,DATE('2022-11-20'),DATE('2022-11-23'),false);
+INSERT INTO PRET(adherent,exemplaire,code_ressource,date_debut,date_fin,rendu) VALUES (3,9,2,DATE('2022-10-24'),DATE('2022-11-19'),false);
+INSERT INTO PRET(adherent,exemplaire,code_ressource,date_debut,date_fin,rendu) VALUES (3,3,3,DATE('2022-09-8'),DATE('2022-11-02'),false);
+INSERT INTO PRET(adherent,exemplaire,code_ressource,date_debut,date_fin,rendu) VALUES (4,9,2,DATE('2022-11-20'),DATE('2022-11-23'),false);
 
 INSERT INTO SANCTION(idadherent,motif,date_debut,date_fin) VALUES (4,'retard',DATE('2022-11-03'),null);
 INSERT INTO SANCTION(idadherent,motif,date_debut,date_fin) VALUES (3,'perte',DATE('2022-11-03'),DATE('2022-11-05'));
 INSERT INTO SANCTION(idadherent,motif,date_debut,date_fin) VALUES (3,'perte',DATE('2022-11-11'),null);
+~~~
