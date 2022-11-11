@@ -1,4 +1,6 @@
-# SQL Partie 1 : Création & insertion
+![status_3](https://img.shields.io/badge/Rendu%203-in%20progress-orange)
+
+# SQL Partie 1 : Création & insertion 
 
 Pour l'utilisation de clé artificielle, nous utiliserons le type SERIAL, qui, en POSTGRESQL, est un entier auto-incrémenté lors de l'insertion d'une donnée dans la table.
 
