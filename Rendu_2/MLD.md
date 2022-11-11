@@ -3,13 +3,10 @@
 
 <h2><center>Version 2</center></h2>
 
-
-:::    success
 - Justifiez vos choix de transformation de l'héritage :heavy_check_mark: 
 - Il vous manque les domaines des attributs :heavy_check_mark: 
 - Pour Sanction, considérer la clé comme la référence vers Utilisateur n'est pas une bonne idée, et même une erreur. Il faut la clé et en plus une référence étrangère vers Adhérent (et non Utilisateur) :heavy_check_mark: 
 
-:::
 
 ## Tables
 **Ressource**(#code: int, titre: string, date_apparition: date, code_classification: int, editeur: string, genre: string) avec titre, code_classification NOT NULL
