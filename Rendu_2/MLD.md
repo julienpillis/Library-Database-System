@@ -1,5 +1,5 @@
 # Modèle Logique de Données
-![status_2](https://img.shields.io/badge/Rendu%202-in%20progress-orange)
+![status_2](https://img.shields.io/badge/Rendu%202-done-brightgreen)
 
 ## Tables
 **Ressource**(#code,titre,date_apparition, code_classification, editeur, genre) avec titre, code_classification NOT NULL
