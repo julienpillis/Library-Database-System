@@ -10,13 +10,13 @@
 
 ## Tables
 **Ressource**(#code: int, titre: string, date_apparition: date, code_classification: int, editeur: string, genre: string) avec titre, code_classification NOT NULL
-:::info
 
-- Classe mère abstraite, héritage exclusif : une ressource a un type unique (Film ou Musique ou Livre), héritage non complet (les classes filles ont des atr propres à elles).
-- Héritage par classe mère à éviter car il y'aurait beaucoup de contraintes à causes des associations des classes filles, de plus ce type d'héritage implique l'ajout de contraintes de vérification des types (par exemple lorsqu'on instancie un film, on doit s'assurer que les atr ISBN et résumé sont NULL).
+
+- Classe mère abstraite, héritage exclusif : une ressource a un type unique (Film ou Musique ou Livre), héritage non complet (les classes filles ont des attributs propres à elles).
+- Héritage par classe mère à éviter car il y aurait beaucoup de contraintes à cause des associations des classes filles. Dde plus, ce type d'héritage implique l'ajout de contraintes de vérification des types (par exemple, lorsqu'on instancie un film, on doit s'assurer que les attributs ISBN et résumé sont NULL).
 - Héritage par classe filles à éviter car la classe mère possède une composition avec exemplaire et l'héritage est exclusif.
 - => On opte ainsi pour un héritage par référence.
-:::
+
 **Film**(#code=>Ressource.code: int, synopsis: string, langue: string, longueur: int) avec langue, synopsis, longueur NOT NULL
 
 **Musique**(#code=>Ressource.code: int, longueur: int) avec longeur NOT NULL
@@ -49,12 +49,12 @@
 
 
 **Utilisateur**(#id: int, nom: string, prenom: string, num_adresse: int, rue: string, code_postal: int,  ville: string, mail: string) nom, prenom not null
-:::info
-*  Classe mère abstraite, héritage non complet (les classes filles ont des atr propres à elles).
-* Héritage par classe mère à éviter car il y'aurait beaucoup de contraintes à causes des associations des classes filles, de plus ce type d'héritage implique l'ajout de contraintes de vérification des types (par exemple lorsqu'on instancie un utilisateur (personnel), on doit s'assurer que le statut d'adhésion).
-* Héritage par classe filles à éviter car la classe mère possède une composition avec compte.
-*   => On opte ainsi pour un héritage par référence.
-:::
+
+- Classe mère abstraite, héritage non complet (les classes filles ont des attributs propres à elles).
+- Héritage par classe mère à éviter car il y aurait beaucoup de contraintes à causes des associations des classes filles. De plus ce type d'héritage implique l'ajout de contraintes de vérification des types (par exemple, lorsqu'on instancie un utilisateur (personnel), on doit s'assurer que le statut d'adhésion est NULL).
+- Héritage par classe filles à éviter car la classe mère possède une composition avec compte.
+- => On opte ainsi pour un héritage par référence.
+
 **Personnel**(#id=><span>Utilisateur.id</span>: int)
 
 **Adherent**(#id=><span>Utilisateur.id</span>: int, date_naissance: date, num_tel: int, statut_adhesion: {active, expiree, suspendue, blacklistee}) statut_adhesion NOT NULL
