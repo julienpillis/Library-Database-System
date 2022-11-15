@@ -1,7 +1,7 @@
 ## Système de gestion d'une bibliothèque - A22 / NF18
 ![status_1](https://img.shields.io/badge/Rendu%201-done-brightgreen)
 ![status_2](https://img.shields.io/badge/Rendu%202-done-brightgreen)
-![status_3](https://img.shields.io/badge/Rendu%203-in%20progress-orange)
+![status_3](https://img.shields.io/badge/Rendu%203-done-brightgreen)
 ---
 **Etudiants :** 
  - Pillis Julien
