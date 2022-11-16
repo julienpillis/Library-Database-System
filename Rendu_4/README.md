@@ -22,7 +22,10 @@ Aperçu de la page de l'espace Adhérents :
 ![](img/espace_adherent.png)
 
 Aperçu de la page de l'espace Personnel de la bibliothèque : 
-![](img/espacePersonnel.png)
+![](img/espace_personnel.png)
 
 Aperçu de la page d'affichage des livres: 
-![](img/livres.png.png)
+![](img/livres.png)
+
+Aperçu du détail d'une musique : 
+![](img/détails_musique.png)
