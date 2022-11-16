@@ -7,7 +7,9 @@ Vous trouverez ici, les principales requêtes SQL utilisées pour notre applicat
 Bien évidemment, il s'agit d'une première version de l'application comme demandé. Nous n'avons pas encore pu intégrer toutes les requêtes nécessaires.
 
 ### Requête de connexion
-![](https://)
+![
+](https://)
+
 On vérifie bien que la personne se connecte bien en tant qu'adhérent | personnel
 ~~~sql
 query = f"SELECT Compte.id FROM Compte 
@@ -59,7 +61,7 @@ query = f"SELECT nom, prenom FROM Realisateur
                  WHERE F.code = '{film[0]}';"
 ~~~
 ~~~sql
-/* Récupération des noms et prénoms des acteurs d'un film donné */
+/* Récupération des noms et prénoms des acteurs d'un film donné.*/
 query = f"SELECT nom, prenom FROM Acteur 
                  INNER JOIN Film F ON F.code = Acteur.film 
                  INNER JOIN Contributeur C ON C.id = Acteur.contrib 
@@ -69,6 +71,7 @@ query = f"SELECT nom, prenom FROM Acteur
 ~~~sql
 /* Récupération de la liste de contributeur avec choix(ordonnée/non_ordonnée) */
 /* supp = f"ORDER BY {order}" */
+/* Tri effectué lors du clique sur le nom de la colonne (uniquement fonctionnel pour les films car pas encore implémenté ailleurs)*/
 query = f"SELECT id, nom, prenom, date_naissance, nationalite 
                  FROM Contributeur {supp if order != 'None' else '' };"
 cursor.execute(query)
