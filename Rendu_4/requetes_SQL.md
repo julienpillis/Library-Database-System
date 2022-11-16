@@ -7,9 +7,6 @@ Vous trouverez ici, les principales requêtes SQL utilisées pour notre applicat
 Bien évidemment, il s'agit d'une première version de l'application comme demandé. Nous n'avons pas encore pu intégrer toutes les requêtes nécessaires.
 
 ### Requête de connexion
-![
-](https://)
-
 On vérifie bien que la personne se connecte bien en tant qu'adhérent | personnel
 ~~~sql
 query = f"SELECT Compte.id FROM Compte 
