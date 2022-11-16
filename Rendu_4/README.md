@@ -7,3 +7,11 @@ Merci de vérifier que vous êtes bien connecté, directement ou par VPN, au ré
 
 Pour accéder à un espace (adhérent ou personnel), merci d'utiliser les identifiants dans le script SQL du Rendu_3.
 
+## Aperçu de l'application
+
+![](img/landing_page.png)
+![](img/connexion_adherent.png)
+![](img/connexion_personnel.png)
+![](img/espace_adherent.png)
+![](img/espacePersonnel.png)
+![](img/livres.png.png)
