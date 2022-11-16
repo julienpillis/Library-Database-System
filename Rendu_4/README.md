@@ -24,8 +24,8 @@ Pour accéder à un espace (adhérent ou personnel), merci d'utiliser les identi
 ### Aperçu de la page de l'espace Personnel de la bibliothèque : 
 ![](img/espace_personnel.png)
 
-### Aperçu de la page d'affichage des livres: 
+### Aperçu de la page d'affichage des livres (espace Adhérents): 
 ![](img/livres.png)
 
-### Aperçu du détail d'une musique : 
+### Aperçu des détails d'une musique (espace Adhérents) : 
 ![](img/details_musique.png)
