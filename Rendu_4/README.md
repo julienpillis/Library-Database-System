@@ -9,23 +9,23 @@ Pour accéder à un espace (adhérent ou personnel), merci d'utiliser les identi
 
 ## Aperçu de l'application
 
-Aperçu de l'application à son démarrage : 
+### Aperçu de l'application à son démarrage : 
 ![](img/landing_page.png)
 
-Aperçu de la page de connexion à l'espace Adhérents : 
+### Aperçu de la page de connexion à l'espace Adhérents : 
 ![](img/connexion_adherent.png)
 
-Aperçu de la page de connexion à l'espace Personnel de la bibliothèque : 
+### Aperçu de la page de connexion à l'espace Personnel de la bibliothèque : 
 ![](img/connexion_personnel.png)
 
-Aperçu de la page de l'espace Adhérents : 
+### Aperçu de la page de l'espace Adhérents : 
 ![](img/espace_adherent.png)
 
-Aperçu de la page de l'espace Personnel de la bibliothèque : 
+### Aperçu de la page de l'espace Personnel de la bibliothèque : 
 ![](img/espace_personnel.png)
 
-Aperçu de la page d'affichage des livres: 
+### Aperçu de la page d'affichage des livres: 
 ![](img/livres.png)
 
-Aperçu du détail d'une musique : 
-![](img/détails_musique.png)
+### Aperçu du détail d'une musique : 
+![](img/details_musique.png)
