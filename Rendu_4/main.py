@@ -272,6 +272,15 @@ def espacePersonnels(win, conn, profil, prev_frame=None):
 
 
 def addPret_frame(win, conn, profil, retry=False, prev_frame=None, valid=False):
+
+    query = "SELECT * FROM Pret ;"
+
+    cursor = conn.cursor()
+    cursor.execute(query)
+    ff = cursor.fetchall()
+    for f in ff :
+        print(f)
+
     if (prev_frame != None): clear_frame(prev_frame)
     frame = Frame(win)
     frame.grid(row=0, sticky="ew")
@@ -279,8 +288,8 @@ def addPret_frame(win, conn, profil, retry=False, prev_frame=None, valid=False):
     Label(frame, text=f"ID Adherent", font=("Arial", 10), padx=10, pady=10).grid(row=1, column=0, sticky='nswe')
     Label(frame, text=f"ID Exemplaire", font=("Arial", 10), padx=10, pady=10).grid(row=2, column=0, sticky='nswe')
     Label(frame, text=f"Code Ressource", font=("Arial", 10), padx=10, pady=10).grid(row=3, column=0, sticky='nswe')
-    Label(frame, text=f"Date début", font=("Arial", 10), padx=10, pady=10).grid(row=4, column=0, sticky='nswe')
-    Label(frame, text=f"Date Fin", font=("Arial", 10), padx=10, pady=10).grid(row=5, column=0, sticky='nswe')
+    Label(frame, text=f"Date début (YYYY-MM-DD)", font=("Arial", 10), padx=10, pady=10).grid(row=4, column=0, sticky='nswe')
+    Label(frame, text=f"Date Fin (YYYY-MM-DD)", font=("Arial", 10), padx=10, pady=10).grid(row=5, column=0, sticky='nswe')
 
     idAdherent = Entry(frame, font=("Arial", 10))
     idAdherent.grid(row=1, column=1)
@@ -372,11 +381,11 @@ def addPret(win, conn, profil, frame, values):
     valid = False
     try:
         # Si statut adhesion = active et exemplaire disponible (select exemplaire exemplaire id where rendu = false est vide) et etat non perdu
-        # query = f"SELECT statut_adhesion FROM Adherent WHERE id={int(values[0])};"
-        query = 'SELECT * FROM Pret;'
+        query = f"SELECT statut_adhesion FROM Adherent WHERE id={int(values[0])};"
+        #query = 'SELECT * FROM Pret;'
         print(query)
         cursor.execute(query)
-        print(cursor.fetchall())
+        #print(cursor.fetchall())
         statut = True if (cursor.fetchone())[0] == 'active' else False
 
         query = f"SELECT etat FROM Exemplaire E WHERE E.id = {int(values[1])} AND E.code_ressource =  {int(values[2])};"
@@ -397,8 +406,9 @@ def addPret(win, conn, profil, frame, values):
             valid = True
 
     except Exception as er:
-        print(er)
-        error = True
+       print(er)
+       error = True
+       conn.rollback()
 
     addPret_frame(win, conn, profil, error, frame, valid)
 
@@ -474,6 +484,7 @@ def addExemplaire(win, conn, profil, frame, values):
         valid = True
     except Exception as er:
         error = True
+        conn.rollback()
     addExemplaire_frame(win, conn, profil, error, frame, valid)
 
 
@@ -483,8 +494,8 @@ def updateSanction_frame(win, conn, profil, retry=False, prev_frame=None, valid=
     frame.grid(row=0, sticky="ew")
     Label(frame, text=f"Modifier une sanction", font=("Arial", 20), padx=10, pady=10).grid(row=0, column=0,
                                                                                            columnspan=2)
-    Label(frame, text=f"Numéro de sanction", font=("Arial", 10), padx=10, pady=10).grid(row=1, column=0, sticky='nswe')
-    Label(frame, text=f"Date de Fin", font=("Arial", 10), padx=10, pady=10).grid(row=2, column=0, sticky='nswe')
+    Label(frame, text=f"Numéro de sanction : ", font=("Arial", 10), padx=10, pady=10).grid(row=1, column=0, sticky='nswe')
+    Label(frame, text=f"Date de Fin (YYYY-MM-DD) :", font=("Arial", 10), padx=10, pady=10).grid(row=2, column=0, sticky='nswe')
 
     num = Entry(frame, font=("Arial", 10))
     num.grid(row=1, column=1)
@@ -550,6 +561,7 @@ def updateSanction(win, conn, profil, frame, values):
         valid = True
     except Exception as er:
         error = True
+        conn.rollback()
     updateSanction_frame(win, conn, profil, error, frame, valid)
 
 
@@ -614,7 +626,7 @@ def addAdherent_frame(win, conn, profil, retry=False, prev_frame=None, valid=Fal
     Label(frame, text=f"Code postal", font=("Arial", 10), padx=10, pady=10).grid(row=5, column=0, sticky='nswe', )
     Label(frame, text=f"Ville", font=("Arial", 10), padx=10, pady=10).grid(row=6, column=0, sticky='nswe', )
     Label(frame, text=f"Adresse mail", font=("Arial", 10), padx=10, pady=10).grid(row=7, column=0, sticky='nswe', )
-    Label(frame, text=f"Date de naissance", font=("Arial", 10), padx=10, pady=10).grid(row=8, column=0, sticky='nswe', )
+    Label(frame, text=f"Date de naissance (YYYY-MM-DD) ", font=("Arial", 10), padx=10, pady=10).grid(row=8, column=0, sticky='nswe', )
     Label(frame, text=f"Tél", font=("Arial", 10), padx=10, pady=10).grid(row=9, column=0, sticky='nswe', )
     Label(frame, text=f"Login", font=("Arial", 10), padx=10, pady=10).grid(row=10, column=0, sticky='nswe', )
     Label(frame, text=f"Mot de passe", font=("Arial", 10), padx=10, pady=10).grid(row=11, column=0, sticky='nswe', )
@@ -633,7 +645,7 @@ def addAdherent_frame(win, conn, profil, retry=False, prev_frame=None, valid=Fal
     ville.grid(row=6, column=1)
     mail = Entry(frame, text=f"adresse mail", font=("Arial", 10))
     mail.grid(row=7, column=1)
-    date_naissance = Entry(frame, text=f"date de naissance", font=("Arial", 10))
+    date_naissance = Entry(frame, text=f"date de naissance (YYYY-MM-DD) ", font=("Arial", 10))
     date_naissance.grid(row=8, column=1)
     tel = Entry(frame, text=f"tel", font=("Arial", 10))
     tel.grid(row=9, column=1)
@@ -695,7 +707,7 @@ def addAdherent_frame(win, conn, profil, retry=False, prev_frame=None, valid=Fal
     if (valid):
         Label(frame, text=f"Film ajouté !", fg='green', font=("Arial", 10), padx=10, pady=10).grid(row=12, column=0)
     elif (retry):
-        Label(frame, text=f"Impossible d'ajouter le film!", fg='red', font=("Arial", 10), padx=10, pady=10).grid(row=12,
+        Label(frame, text=f"Impossible d'ajouter l'adhérent !", fg='red', font=("Arial", 10), padx=10, pady=10).grid(row=12,
                                                                                                                  column=0)
 
     Button(frame, text="Retour", command=lambda: espacePersonnels(win, conn, profil, prev_frame=frame), padx=20).grid(
@@ -713,6 +725,7 @@ def addAdherent(win, conn, profil, frame, values):
     except Exception as er:
         print(er)
         error = True
+        conn.rollback()
     try:
 
         if (not error):
@@ -725,6 +738,7 @@ def addAdherent(win, conn, profil, frame, values):
     except Exception as er:
         print(er)
         error = True
+        conn.rollback()
     try:
         if (not error):
             query = f"INSERT INTO Compte VALUES ({id},'{values[9]}','{values[10]}');"
@@ -735,6 +749,7 @@ def addAdherent(win, conn, profil, frame, values):
     except Exception as er:
         print(er)
         error = True
+        conn.rollback()
 
     addAdherent_frame(win, conn, profil, error, frame, valid)
 
@@ -747,7 +762,7 @@ def addSanction_frame(win, conn, profil, retry=False, prev_frame=None, valid=Fal
     Label(frame, text=f"ID Adhérent", font=("Arial", 10), padx=10, pady=10).grid(row=1, column=0, sticky='nswe')
     Label(frame, text=f"Motif ('retard','deterioration' ou 'perte')", font=("Arial", 10), padx=10, pady=10).grid(row=2,
                                                                                                                  column=0)
-    Label(frame, text=f"Date d'émission", font=("Arial", 10), padx=10, pady=10).grid(row=3, column=0, sticky='nswe')
+    Label(frame, text=f"Date d'émission (YYYY-MM-DD)", font=("Arial", 10), padx=10, pady=10).grid(row=3, column=0, sticky='nswe')
 
     id = Entry(frame, font=("Arial", 10))
     id.grid(row=1, column=1)
@@ -813,8 +828,11 @@ def addSanction(win, conn, profil, frame, values):
     try:
         query = f"INSERT INTO Sanction(idadherent,motif,date_debut,date_fin) VALUES ({int(values[0])},'{values[1]}',DATE('{values[2]}'),NULL);"
         cursor.execute(query)
+        conn.commit()
+        valid = True
     except Exception:
         error = True
+        conn.rollback()
 
     addSanction_frame(win, conn, profil, error, frame, valid)
 
@@ -826,7 +844,7 @@ def addFilm_frame(win, conn, profil, retry=False, prev_frame=None, valid=False):
     Label(frame, text=f"Ajouter un Film", font=("Arial", 20), padx=10, pady=10).grid(row=0, column=0, columnspan=2)
     Label(frame, text=f"Code", font=("Arial", 10), padx=10, pady=10).grid(row=1, column=0, sticky='nswe')
     Label(frame, text=f"Titre", font=("Arial", 10), padx=10, pady=10).grid(row=2, column=0)
-    Label(frame, text=f"Apparition", font=("Arial", 10), padx=10, pady=10).grid(row=3, column=0, sticky='nswe')
+    Label(frame, text=f"Apparition (YYYY-MM-DD)", font=("Arial", 10), padx=10, pady=10).grid(row=3, column=0, sticky='nswe')
     Label(frame, text=f"Classification", font=("Arial", 10), padx=10, pady=10).grid(row=4, column=0, sticky='nswe')
     Label(frame, text=f"Éditeur", font=("Arial", 10), padx=10, pady=10).grid(row=5, column=0, sticky='nswe')
     Label(frame, text=f"Genre", font=("Arial", 10), padx=10, pady=10).grid(row=6, column=0, sticky='nswe')
@@ -838,7 +856,7 @@ def addFilm_frame(win, conn, profil, retry=False, prev_frame=None, valid=False):
     code.grid(row=1, column=1)
     titre = Entry(frame, text=f"titre", font=("Arial", 10))
     titre.grid(row=2, column=1)
-    apparition = Entry(frame, text=f"apparition", font=("Arial", 10))
+    apparition = Entry(frame, text=f"apparition (YYYY-MM-DD)", font=("Arial", 10))
     apparition.grid(row=3, column=1)
     classification = Entry(frame, text=f"classification", font=("Arial", 10))
     classification.grid(row=4, column=1)
@@ -909,6 +927,7 @@ def addFilm(win, conn, profil, frame, values):
         cursor.execute(query)
     except Exception:
         error = True
+        conn.rollback()
     try:
         if (not error):
             # Les contraintes du MLD sont implicitement vérifiées par l'interface. Un ressource appartient forcément à une catégorie et elle ne peut pas se retrouver dans plusieurs catégories
@@ -919,6 +938,7 @@ def addFilm(win, conn, profil, frame, values):
             valid = True
     except Exception:
         error = True;
+        conn.rollback()
 
     addFilm_frame(win, conn, profil, error, frame, valid)
 
@@ -930,7 +950,7 @@ def addMusique_frame(win, conn, profil, retry=False, prev_frame=None, valid=Fals
     Label(frame, text=f"Ajouter une Musique", font=("Arial", 20), padx=10, pady=10).grid(row=0, column=0, columnspan=2)
     Label(frame, text=f"Code", font=("Arial", 10), padx=10, pady=10).grid(row=1, column=0, sticky='nswe')
     Label(frame, text=f"Titre", font=("Arial", 10), padx=10, pady=10).grid(row=2, column=0, sticky='nswe')
-    Label(frame, text=f"Apparition", font=("Arial", 10), padx=10, pady=10).grid(row=3, column=0, sticky='nswe')
+    Label(frame, text=f"Apparition (YYYY-MM-DD)", font=("Arial", 10), padx=10, pady=10).grid(row=3, column=0, sticky='nswe')
     Label(frame, text=f"Classification", font=("Arial", 10), padx=10, pady=10).grid(row=4, column=0, sticky='nswe')
     Label(frame, text=f"Éditeur", font=("Arial", 10), padx=10, pady=10).grid(row=5, column=0, sticky='nswe')
     Label(frame, text=f"Genre", font=("Arial", 10), padx=10, pady=10).grid(row=6, column=0, sticky='nswe')
@@ -940,7 +960,7 @@ def addMusique_frame(win, conn, profil, retry=False, prev_frame=None, valid=Fals
     code.grid(row=1, column=1)
     titre = Entry(frame, text=f"titre", font=("Arial", 10))
     titre.grid(row=2, column=1)
-    apparition = Entry(frame, text=f"apparition", font=("Arial", 10))
+    apparition = Entry(frame, text=f"apparition (YYYY-MM-DD)", font=("Arial", 10))
     apparition.grid(row=3, column=1)
     classification = Entry(frame, text=f"classification", font=("Arial", 10))
     classification.grid(row=4, column=1)
@@ -1004,6 +1024,7 @@ def addMusique(win, conn, profil, frame, values):
     except Exception as error:
         print(error)
         error = True
+        conn.rollback()
     try:
         if (not error):
             # Les contraintes du MLD sont implicitement vérifiées par l'interface. Un ressource appartient forcément à une catégorie et elle ne peut pas se retrouver dans plusieurs catégories
@@ -1012,9 +1033,10 @@ def addMusique(win, conn, profil, frame, values):
             print("ajout musique")
             conn.commit()
             valid = True
-    except Exception as error:
-        print(Exception)
+    except Exception as er:
+        print(er)
         error = True;
+        conn.rollback()
 
     print(error)
 
@@ -1028,7 +1050,7 @@ def addLivre_frame(win, conn, profil, retry=False, prev_frame=None, valid=False)
     Label(frame, text=f"Ajouter un Livre", font=("Arial", 20), padx=10, pady=10).grid(row=0, column=0, columnspan=2)
     Label(frame, text=f"Code", font=("Arial", 10), padx=10, pady=10).grid(row=1, column=0, sticky='nswe')
     Label(frame, text=f"Titre", font=("Arial", 10), padx=10, pady=10).grid(row=2, column=0, sticky='nswe')
-    Label(frame, text=f"Apparition", font=("Arial", 10), padx=10, pady=10).grid(row=3, column=0, sticky='nswe')
+    Label(frame, text=f"Apparition (YYYY-MM-DD)", font=("Arial", 10), padx=10, pady=10).grid(row=3, column=0, sticky='nswe')
     Label(frame, text=f"Classification", font=("Arial", 10), padx=10, pady=10).grid(row=4, column=0, sticky='nswe')
     Label(frame, text=f"Éditeur", font=("Arial", 10), padx=10, pady=10).grid(row=5, column=0, sticky='nswe')
     Label(frame, text=f"Genre", font=("Arial", 10), padx=10, pady=10).grid(row=6, column=0, sticky='nswe')
@@ -1040,7 +1062,7 @@ def addLivre_frame(win, conn, profil, retry=False, prev_frame=None, valid=False)
     code.grid(row=1, column=1)
     titre = Entry(frame, text=f"titre", font=("Arial", 10))
     titre.grid(row=2, column=1)
-    apparition = Entry(frame, text=f"apparition", font=("Arial", 10))
+    apparition = Entry(frame, text=f"apparition (YYYY-MM-DD)", font=("Arial", 10))
     apparition.grid(row=3, column=1)
     classification = Entry(frame, text=f"classification", font=("Arial", 10))
     classification.grid(row=4, column=1)
@@ -1112,6 +1134,7 @@ def addLivre(win, conn, profil, frame, values):
     except Exception as er:
         print(er)
         error = True
+        conn.rollback()
     try:
         if (not error):
             # Les contraintes du MLD sont implicitement vérifiées par l'interface. Un ressource appartient forcément à une catégorie et elle ne peut pas se retrouver dans plusieurs catégories
@@ -1123,6 +1146,7 @@ def addLivre(win, conn, profil, frame, values):
     except Exception as er:
         print(er)
         error = True;
+        conn.rollback()
 
     addLivre_frame(win, conn, profil, error, frame, valid)
 
@@ -1173,7 +1197,7 @@ def espaceFilms(win, conn, prev_frame, profil):
     tree.column("# 2", anchor=CENTER)
     tree.heading("# 2", text="Titre")
     tree.column("# 3", anchor=CENTER)
-    tree.heading("# 3", text="Apparition")
+    tree.heading("# 3", text="Apparition (YYYY-MM-DD)")
     tree.column("# 4", anchor=CENTER)
     tree.heading("# 4", text="Genre")
     tree.column("# 5", anchor=CENTER)
@@ -1204,7 +1228,7 @@ def afficherFilm(win, conn, film, profil, prev_frame=None):
     film = cursor.fetchone()
     print(film)
 
-    query = f"SELECT COUNT(*) FROM Exemplaire E WHERE E.code_ressource = {film[0]};"
+    query = f"SELECT COUNT(*) FROM Exemplaire E WHERE E.code_ressource = {film[0]} AND etat<>'perdu';"
     cursor.execute(query)
     total = cursor.fetchone()[0]
 
@@ -1212,11 +1236,15 @@ def afficherFilm(win, conn, film, profil, prev_frame=None):
     cursor.execute(query)
     non_dispo = cursor.fetchone()[0]
 
+    query = f"SELECT * FROM Pret P ;"
+    cursor.execute(query)
+    print(cursor.fetchall())
+
     Label(frame, text=f"Information du Film : ", font=("Arial", 15), padx=10, pady=10).grid(row=0, column=0,
                                                                                             columnspan=3)
     Label(frame, text=f"Titre: ", font=("Arial", 10, 'bold'), padx=10, pady=10).grid(row=1, column=0, sticky='w')
     Label(frame, text=f"{film[1]}", font=("Arial", 10), padx=10, pady=10).grid(row=1, column=1, sticky='w')
-    Label(frame, text=f"Date d'apparition:", font=("Arial", 10, 'bold'), padx=10, pady=10).grid(row=2, column=0,
+    Label(frame, text=f"Date d'apparition (YYYY-MM-DD): ", font=("Arial", 10, 'bold'), padx=10, pady=10).grid(row=2, column=0,
                                                                                                 sticky='w')
     Label(frame, text=f"{film[2]}", font=("Arial", 10), padx=10, pady=10).grid(row=2, column=1, sticky='w')
     Label(frame, text=f"Code de classification : ", font=("Arial", 10, 'bold'), padx=10, pady=10).grid(row=3, column=0,
@@ -1234,6 +1262,7 @@ def afficherFilm(win, conn, film, profil, prev_frame=None):
     Label(frame, text=f"{film[8]} min", font=("Arial", 10), padx=10, pady=10).grid(row=8, column=1, sticky='w')
     Label(frame, text=f"Disponibilité : ", font=("Arial", 10, 'bold'), padx=10, pady=10).grid(row=9, column=0,
                                                                                               sticky='w')
+    print(non_dispo)
     Label(frame, text=f"{total - non_dispo}/{total}", font=("Arial", 10), padx=10, pady=10).grid(row=9, column=1,
                                                                                                  sticky='w')
 
@@ -1331,7 +1360,7 @@ def afficherMusique(win, conn, musique, profil, prev_frame=None):
     Label(frame, text=f"Information de la Musique: ", font=("Arial", 15), padx=10, pady=10).grid(row=1, column=0,
                                                                                                  columnspan=3)
     Label(frame, text=f"Titre: {musique[1]}", font=("Arial", 10), padx=10, pady=10).grid(row=2, column=0, columnspan=3)
-    Label(frame, text=f"Date d'apparition: {musique[2]}", font=("Arial", 10), padx=10, pady=10).grid(row=3, column=0,
+    Label(frame, text=f"Date d'apparition (YYYY-MM-DD): {musique[2]}", font=("Arial", 10), padx=10, pady=10).grid(row=3, column=0,
                                                                                                      columnspan=3)
     Label(frame, text=f"Code de classification : {musique[3]}", font=("Arial", 10), padx=10, pady=10).grid(row=4,
                                                                                                            column=0,
@@ -1442,7 +1471,7 @@ def afficherLivre(win, conn, livre, profil, prev_frame=None):
     Label(frame, text=f"Information du Livre : ", font=("Arial", 15), padx=10, pady=10).grid(row=1, column=0,
                                                                                              columnspan=3)
     Label(frame, text=f"Titre: {livre[1]}", font=("Arial", 10), padx=10, pady=10).grid(row=2, column=0, columnspan=3)
-    Label(frame, text=f"Date d'apparition: {livre[2]}", font=("Arial", 10), padx=10, pady=10).grid(row=3, column=0,
+    Label(frame, text=f"Date d'apparition (YYYY-MM-DD): {livre[2]}", font=("Arial", 10), padx=10, pady=10).grid(row=3, column=0,
                                                                                                    columnspan=3)
     Label(frame, text=f"Code de classification : {livre[3]}", font=("Arial", 10), padx=10, pady=10).grid(row=4,
                                                                                                          column=0,
@@ -1531,7 +1560,7 @@ def afficherContributeur(win, conn, contributeur, profil, prev_frame=None):
                                                                                             columnspan=3)
     Label(frame, text=f"Prénom: {contributeur[2]}", font=("Arial", 10), padx=10, pady=10).grid(row=3, column=0,
                                                                                                columnspan=3)
-    Label(frame, text=f"date_naissance : {contributeur[3]}", font=("Arial", 10), padx=10, pady=10).grid(row=4, column=0,
+    Label(frame, text=f"date_naissance (YYYY-MM-DD) : {contributeur[3]}", font=("Arial", 10), padx=10, pady=10).grid(row=4, column=0,
                                                                                                         columnspan=3)
     Label(frame, text=f"nationalite : {contributeur[4]}", font=("Arial", 10), padx=10, pady=10).grid(row=5, column=0,
                                                                                                      columnspan=3)
