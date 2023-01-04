@@ -1,7 +1,7 @@
 # Implémentation JSON
 ## I. Réflexion sur l'intégration d'attributs de type JSON
 
-Dans cette étape de notre conception d'un base de données, nous allons nous intéresser à l'implémentation d'attributs de type JSON dans nos tables déjà conçues. Pour ce faire, regardons de plus près notre diagramme UML : 
+Dans cette étape de notre conception d'une base de données, nous allons nous intéresser à l'implémentation d'attributs de type JSON dans nos tables déjà conçues. Pour ce faire, regardons de plus près notre diagramme UML : 
 
 ![](https://gitlab.utc.fr/pillisju/projet-nf18-td1_g2-bibliotheque/-/raw/main/img/Integration_JSON.png)
 
