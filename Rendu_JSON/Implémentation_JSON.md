@@ -14,12 +14,12 @@ Par contrainte de la cardinalité <b>1..n</b>, nous devons ajouter la contrainte
 :warning: 
 Cependant, cette implémentation est pour le moment difficilement envisageable. En effet, n'ayant pas vu cela dans le cours, nous ne savons pas comment récupérer l'id de l'example, qui est un sous-attribut d'un attribut json
 
-Dans la suite ce cette partie, nous avons supposé qu'il est possible de récupérer cet id.
+Dans la suite de cette partie, nous avons supposé qu'il est possible de récupérer cet id.
 
 
 En zone rouge, la relation <b>SANCTION</b> peut se transformer en attribut JSON au sein de la relation <b>ADHERENT</b> grâce aux cardinalités de l'association (équivalent à une composition). 
 
-Enfin, en zone bleue, la relation <b>COMPTE</b> peut se transformer en attribut JSON au sein de la relation <b>UTILISATEUR</b> car il s'agit d'une nouvelles fois d'une composition.
+Enfin, en zone bleue, la relation <b>COMPTE</b> peut se transformer en attribut JSON au sein de la relation <b>UTILISATEUR</b> car il s'agit d'une nouvelle fois d'une composition.
 Par contrainte de la cardinalité <b>1</b>, nous devons ajouter la contrainte <b>NOT NULL</b> à ce nouvel attribut.
 
 ## II. Implémentation de ces attributs dans les tables concernées (SQL)
