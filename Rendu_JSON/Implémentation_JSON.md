@@ -11,11 +11,11 @@ En zone verte , la relation <b>EXAMPLAIRE</b> peut se transformer en attribut JS
 Cependant, nous devons faire attention à bien conserver l'attribut <b>id</b> d'exemplaire, car nécessaire pour son association avec la classe <b>ADHERENT</b> (classe d'association <b>PRET</b>).
 Par contrainte de la cardinalité <b>1..n</b>, nous devons ajouter la contrainte <b>NOT NULL</b> à ce nouvel attribut.
 
-:::danger
+:warning: 
 Cependant, cette implémentation est pour le moment difficilement envisageable. En effet, n'ayant pas vu cela dans le cours, nous ne savons pas comment récupérer l'id de l'example, qui est un sous-attribut d'un attribut json
 
 Dans la suite ce cette partie, nous avons supposé qu'il est possible de récupérer cet id.
-:::
+
 
 En zone rouge, la relation <b>SANCTION</b> peut se transformer en attribut JSON au sein de la relation <b>ADHERENT</b> grâce aux cardinalités de l'association (équivalent à une composition). 
 
@@ -72,10 +72,10 @@ CREATE TABLE Pret(
     CHECK(date_fin>=date_debut)
 );
 ```
-:::info
+
 :warning:  Dans la création de la table <b>PRET</b> nous supposons qu'exemplaire récupère l'id de l'exemplaire.
 (c.f : Partie I)
-:::
+
 
  
 ## III. Exemples d'insertion sur ces nouvelles tables 
