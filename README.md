@@ -3,8 +3,8 @@
 ![status_2](https://img.shields.io/badge/Rendu%202-done-brightgreen)
 ![status_3](https://img.shields.io/badge/Rendu%203-done-brightgreen)
 ![status_4](https://img.shields.io/badge/Rendu%204-done-brightgreen)
-![status_5](https://img.shields.io/badge/Rendu%204-done-brightgreen)
-![status_6](https://img.shields.io/badge/Rendu%204-done-brightgreen)
+![status_5](https://img.shields.io/badge/Rendu%205-done-brightgreen)
+![status_6](https://img.shields.io/badge/Rendu%206-done-brightgreen)
 ---
 **Etudiants :** 
  - Pillis Julien
