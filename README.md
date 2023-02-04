@@ -6,6 +6,8 @@
 ![status_5](https://img.shields.io/badge/Rendu%205-done-brightgreen)
 ![status_6](https://img.shields.io/badge/Rendu%206-done-brightgreen)
 ---
+<b>Note obtenue : 20/21 </b>
+
 **Etudiants :** 
  - Pillis Julien
  - Galleze Rayane
